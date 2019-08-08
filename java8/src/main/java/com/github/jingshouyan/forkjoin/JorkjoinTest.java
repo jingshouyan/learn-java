@@ -37,7 +37,7 @@ public class JorkjoinTest implements Runnable {
         try {
             Random random = new Random();
             int sleep = random.nextInt(10);
-            Thread.sleep(sleep);
+//            Thread.sleep(sleep);
             int x = i.getAndIncrement();
             log.info("print {}", x);
             if (x % 3 == 0) {
@@ -48,7 +48,7 @@ public class JorkjoinTest implements Runnable {
 //                log.warn("error time : {}",xx);
 //                throw new RuntimeException("xxx");
 //            }
-        } catch (InterruptedException e) {
+        } catch (Throwable e) {
             log.error("error:", e);
         }
     }
