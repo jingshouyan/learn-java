@@ -17,6 +17,7 @@
     <modules>
         <module>netty</module>
         <module>antlr4</module>
+        <module>java8</module>
     </modules>
 
     <properties>
