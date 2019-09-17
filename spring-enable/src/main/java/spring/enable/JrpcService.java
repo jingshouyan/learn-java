@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-public @interface JrpcProxy {
+public @interface JrpcService {
 
     String server();
     String version() default "";

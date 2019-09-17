@@ -12,8 +12,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@Import(JrpcProxiesRegistrar.class)
-public @interface EnableJrpcProxies {
+@Import(JrpcServicesRegistrar.class)
+public @interface EnableJrpcServices {
 
     /**
      * Alias for the {@link #basePackages()} attribute. Allows for more concise annotation
