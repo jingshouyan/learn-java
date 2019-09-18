@@ -22,6 +22,12 @@ public class TestEnable {
 
     @Test
     public void test(){
-        userService.getUser("abc");
+        userService.v("abc");
+        userService.rsp(1);
+        userService.obj("2343");
+        userService.monoVoid(123.3);
+        userService.monoRsp(1);
+        userService.monoUser("st");
+
     }
 }
