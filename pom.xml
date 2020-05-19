@@ -19,6 +19,7 @@
         <module>antlr4</module>
         <module>java8</module>
         <module>spring-enable</module>
+        <module>reactor</module>
     </modules>
 
     <properties>
