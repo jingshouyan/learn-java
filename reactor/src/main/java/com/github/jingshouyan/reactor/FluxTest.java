@@ -16,20 +16,11 @@ import java.util.List;
  * @author jingshouyan
  * #date 2020/5/19 11:08
  */
+
 public class FluxTest {
 
     public static void main(String[] args) throws InterruptedException {
-        Flux<Integer> flux = Flux.range(0, 1000)
-//                .subscribeOn(Schedulers.boundedElastic())
-                .doOnEach(i -> System.out.println("do on each: " + i))
-                .doOnRequest(i -> System.out.println("request: "+ i ))
-                .limitRate(75)
-                .window(5)
-                .concatMap(f -> f,8)
-
-                ;
-        SimpleSubscriber<Integer> simpleSubscriber = new SimpleSubscriber<>();
-        flux.subscribe(simpleSubscriber);
+        fluxGenerate();
 
 //        Flux.merge(Flux.interval(Duration.ofSeconds(1)).take(5), Flux.interval(Duration.ofSeconds(1)).take(5))
 //                .toStream()
@@ -62,6 +53,40 @@ public class FluxTest {
 //        swap.dispose();
 //        swap.replace(disposable);
         Thread.sleep(3000);
+    }
+
+
+
+    public static void t() {
+        Flux<Integer> flux = Flux.range(0, 1000)
+//                .subscribeOn(Schedulers.boundedElastic())
+                .doOnEach(i -> System.out.println("do on each: " + i))
+                .doOnRequest(i -> System.out.println("request: " + i))
+                .limitRate(75)
+                .window(5)
+                .concatMap(f -> f, 8);
+        SimpleSubscriber<Integer> simpleSubscriber = new SimpleSubscriber<>();
+        flux.subscribe(simpleSubscriber);
+    }
+
+    public static void fluxGenerate() {
+        Flux<String> flux = Flux.generate(
+                () -> 0,
+                (state, sink) -> {
+                    sink.next(String.format("3 * %d = %d", state, state * 3));
+                    if (state == 10) {
+                        sink.complete();
+                    }
+                    return state + 1;
+                },
+                state -> System.out.println("state: " + state)
+        );
+
+        flux.subscribe(System.out::println);
+    }
+
+    public void fluxCreate(){
+
     }
 
     public static class SimpleSubscriber<T> extends BaseSubscriber<T> {
