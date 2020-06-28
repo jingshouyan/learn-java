@@ -20,6 +20,9 @@
         <module>java8</module>
         <module>spring-enable</module>
         <module>reactor</module>
+        <module>mongo</module>
+        <module>jmh-db</module>
+        <module>quarkus</module>
     </modules>
 
     <properties>
