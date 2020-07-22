@@ -23,6 +23,7 @@
         <module>mongo</module>
         <module>jmh-db</module>
         <module>quarkus</module>
+        <module>excel</module>
     </modules>
 
     <properties>
@@ -199,7 +200,7 @@
                 <version>2.22.2</version>
                 <configuration>
                     <!-- 忽略测试 -->
-                    <skip>true</skip>
+<!--                    <skip>true</skip>-->
                 </configuration>
             </plugin>
         </plugins>
