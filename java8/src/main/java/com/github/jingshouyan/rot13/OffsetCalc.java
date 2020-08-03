@@ -22,8 +22,8 @@ public class OffsetCalc {
             }
         }
         int len = 0;
-        for (int i = 0; i< range.length / PAIR;i++) {
-            len += range[i+1] - range[i];
+        for (int i = 0; i < range.length / PAIR; i++) {
+            len += range[2 * i + 1] - range[2 * i];
         }
         this.range = range;
         this.offset = offset % len;
