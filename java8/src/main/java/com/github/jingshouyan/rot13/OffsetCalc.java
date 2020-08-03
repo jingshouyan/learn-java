@@ -104,14 +104,5 @@ public class OffsetCalc {
 
     }
 
-    public static void main(String[] args) {
-        int[] range = new int[]{4, 13, 14, 20, 21, 30};
-        OffsetCalc offsetCalc = new OffsetCalc(range, 61);
-        for (int i = 1; i < 25; i++) {
-            int encode = offsetCalc.encode(i);
-            int decode = offsetCalc.decode(encode);
-            String str = String.format("%d: encode=%d, decode=%d, ok=%b", i, encode, decode, i == decode);
-            System.out.println(str);
-        }
-    }
+
 }
