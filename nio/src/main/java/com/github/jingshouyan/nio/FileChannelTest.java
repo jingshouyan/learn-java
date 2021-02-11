@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.Arrays;
 
 /**
  * @author jingshouyan
@@ -14,6 +13,7 @@ import java.util.Arrays;
 public class FileChannelTest {
 
     public static final int CAPACITY = 1024;
+    public static final int COUNT = 20;
 
     public static void main(String[] args) throws Exception {
         File f1 = new File("pom.xml");
@@ -23,16 +23,20 @@ public class FileChannelTest {
         FileOutputStream os = new FileOutputStream(f2);
         FileChannel oc = os.getChannel();
         ByteBuffer buf = ByteBuffer.allocate(CAPACITY);
-        while(ic.read(buf)>0) {
-            if (buf.hasRemaining()) {
-                byte[] tmp = new byte[buf.remaining()];
-                Arrays.fill(tmp,(byte)65);
-                buf.put(tmp);
-            }
-            buf.flip();
-            oc.write(buf);
-            buf.clear();
+//        while(ic.read(buf)>0) {
+//            if (buf.hasRemaining()) {
+//                byte[] tmp = new byte[buf.remaining()];
+//                Arrays.fill(tmp,(byte)65);
+//                buf.put(tmp);
+//            }
+//            buf.flip();
+//            oc.write(buf);
+//            buf.clear();
+//        }
+        for (int i = 0; ic.transferTo(i, COUNT, oc) == COUNT; i += COUNT) {
+            Thread.sleep(100);
         }
+        ;
 
         os.close();
         oc.close();
