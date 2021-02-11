@@ -3,8 +3,10 @@ package com.github.jingshouyan.nio;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Arrays;
 
 /**
  * @author jingshouyan
@@ -15,6 +17,7 @@ public class FileChannelTest {
     public static final int CAPACITY = 1024;
     public static final int COUNT = 20;
 
+
     public static void main(String[] args) throws Exception {
         File f1 = new File("pom.xml");
         FileInputStream is = new FileInputStream(f1);
@@ -22,21 +25,27 @@ public class FileChannelTest {
         File f2 = new File("pom.xml.log");
         FileOutputStream os = new FileOutputStream(f2);
         FileChannel oc = os.getChannel();
-        ByteBuffer buf = ByteBuffer.allocate(CAPACITY);
-//        while(ic.read(buf)>0) {
-//            if (buf.hasRemaining()) {
-//                byte[] tmp = new byte[buf.remaining()];
-//                Arrays.fill(tmp,(byte)65);
-//                buf.put(tmp);
-//            }
-//            buf.flip();
-//            oc.write(buf);
-//            buf.clear();
-//        }
-        for (int i = 0; ic.transferTo(i, COUNT, oc) == COUNT; i += COUNT) {
-            Thread.sleep(100);
+//        ByteBuffer buf = ByteBuffer.allocate(CAPACITY);
+        ByteBuffer b1 = ByteBuffer.allocate(CAPACITY);
+        ByteBuffer b2 = ByteBuffer.allocate(CAPACITY);
+        ByteBuffer b3 = ByteBuffer.allocate(CAPACITY);
+        ByteBuffer[] buffers = new ByteBuffer[]{b1, b2, b3};
+        long read = 0;
+        long sum = 0;
+        while ((read = ic.read(buffers)) > 0) {
+            sum += read;
+            Arrays.stream(buffers)
+                    .forEach(System.out::println);
+            Arrays.stream(buffers).forEach(Buffer::flip);
+            oc.write(buffers);
+            Arrays.stream(buffers).forEach(Buffer::clear);
         }
-        ;
+        System.out.println(sum);
+
+//        for (int i = 0; ic.transferTo(i, COUNT, oc) == COUNT; i += COUNT) {
+//            Thread.sleep(100);
+//        }
+
 
         os.close();
         oc.close();
