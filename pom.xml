@@ -28,6 +28,7 @@
         <module>jackson</module>
         <module>algorithms4</module>
         <module>nio</module>
+        <module>localip</module>
     </modules>
 
     <properties>
