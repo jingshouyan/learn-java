@@ -3,6 +3,7 @@ package com.github.jingshouyan.nio;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.RandomAccessFile;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -22,6 +23,8 @@ public class FileChannelTest {
         File f1 = new File("pom.xml");
         FileInputStream is = new FileInputStream(f1);
         FileChannel ic = is.getChannel();
+        RandomAccessFile f3 = new RandomAccessFile("pom.xml.log","rw");
+        f3.getChannel();
         File f2 = new File("pom.xml.log");
         FileOutputStream os = new FileOutputStream(f2);
         FileChannel oc = os.getChannel();
