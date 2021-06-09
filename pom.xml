@@ -29,6 +29,7 @@
         <module>algorithms4</module>
         <module>nio</module>
         <module>localip</module>
+        <module>redis</module>
     </modules>
 
     <properties>
@@ -45,7 +46,7 @@
         <ali.ttl.version>2.10.0</ali.ttl.version>
         <j-jdbc.version>1.2.1</j-jdbc.version>
         <zipkin.version>5.5.0</zipkin.version>
-        <jmh.version>1.26</jmh.version>
+        <jmh.version>1.32</jmh.version>
     </properties>
 
     <dependencyManagement>
