@@ -30,6 +30,7 @@
         <module>nio</module>
         <module>localip</module>
         <module>redis</module>
+        <module>hot-swap</module>
     </modules>
 
     <properties>
