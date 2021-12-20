@@ -15,7 +15,6 @@ import org.springframework.context.event.EventListener;
 public class App {
 
 
-
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
@@ -23,14 +22,14 @@ public class App {
     @Bean
     public ApplicationRunner runner(WebServerApplicationContext ctx) {
         return args -> {
-            System.out.println("当前 webServer 实现类: "+ ctx
-            .getWebServer().getClass().getName());
+            System.out.println("当前 webServer 实现类: " + ctx
+                    .getWebServer().getClass().getName());
         };
     }
 
     @EventListener(WebServerInitializedEvent.class)
     public void onWebServerReady(WebServerInitializedEvent event) {
-        System.out.println("2当前 webServer 实现类: "+ event
+        System.out.println("2当前 webServer 实现类: " + event
                 .getWebServer().getClass().getName());
     }
 }

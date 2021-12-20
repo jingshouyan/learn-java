@@ -31,6 +31,9 @@
         <module>localip</module>
         <module>redis</module>
         <module>hot-swap</module>
+        <module>agent</module>
+        <module>class-path-test</module>
+        <module>log4j2</module>
     </modules>
 
     <properties>
@@ -52,7 +55,7 @@
 
     <dependencyManagement>
         <dependencies>
-             <dependency>
+            <dependency>
                 <groupId>org.apache.thrift</groupId>
                 <artifactId>libthrift</artifactId>
                 <version>${libthrift.version}</version>
@@ -156,7 +159,7 @@
                 <version>2.22.2</version>
                 <configuration>
                     <!-- 忽略测试 -->
-<!--                    <skip>true</skip>-->
+                    <!--                    <skip>true</skip>-->
                 </configuration>
             </plugin>
         </plugins>
