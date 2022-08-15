@@ -28,7 +28,7 @@ public class Aop2 {
         Method method = signature.getMethod();
         System.out.println(method.toGenericString());
         System.out.println("aop2");
-        return "aop2";
-//        return joinPoint.proceed();
+//        return "aop2";
+        return joinPoint.proceed();
     }
 }

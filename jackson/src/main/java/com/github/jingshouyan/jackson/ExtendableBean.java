@@ -1,6 +1,9 @@
 package com.github.jingshouyan.jackson;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.Data;
 
 import java.util.Date;
@@ -22,9 +25,10 @@ public class ExtendableBean {
     private String name3;
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private TypeA typeA;
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
 
+    @JsonUnwrapped
     private ItemWithRef itemWithRef;
 
     @JsonAnySetter

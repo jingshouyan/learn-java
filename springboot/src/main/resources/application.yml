@@ -1,1 +1,3 @@
-vrv.registry.model: zookeeper1
+management:
+  server:
+    port: 6000
