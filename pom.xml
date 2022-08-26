@@ -34,6 +34,7 @@
         <module>agent</module>
         <module>class-path-test</module>
         <module>log4j2</module>
+        <module>redis-mysql</module>
     </modules>
 
     <properties>
