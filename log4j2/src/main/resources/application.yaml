@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: test-log4j2
+logging:
+  level:
+    com.github.jingshouyan: debug

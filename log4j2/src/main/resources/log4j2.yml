@@ -1,40 +1,32 @@
-Configuration:
+configuration:
+  monitorInterval: 10
+  properties:
+    property:
+      - name: applicationName
+        value: ${spring:spring.application.name}
   status: warn
-
+  AsyncLoggerContextSelector: true
+  messageFactory: org.apache.logging.log4j.message.ParameterizedMessageFactory
   appenders:
-    Console:
-      name: LogToConsole
+    console:
+      name: console
+      target: SYSTEM_OUT
       PatternLayout:
-        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId}/%X{spanId}/%X{parentId}] ${ctx:user} [%t] %c{1} - %msg%n"
-
-    #File:
-    #  name: File
-    #  fileName: logs/app.log
-    #  PatternLayout:
-    #    Pattern: "%d %p %C{1.} [%t] %m%n"
-
-    RollingFile:
-      - name: LogToRollingFile
-        fileName: logs/app.log
-        filePattern: "logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
-        PatternLayout:
-          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
-        Policies:
-          SizeBasedTriggeringPolicy:
-            size: 10MB
-        DefaultRollOverStrategy:
-          max: 10
-
+        pattern: '${applicationName} %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n'
+    async:
+      name: async-console
+      bufferSize: 128
+      blocking: false
+      appenderRef:
+        - ref: console
   Loggers:
-    logger:
-      - name: com.github.jingshouyan
-        level: debug
+    AsyncLogger:
+      - name: com.github
+        level: error
         additivity: false
         AppenderRef:
-          - ref: LogToConsole
-    #          - ref: LogToRollingFile
-
-    Root:
+          - ref: async-console
+    AsyncRoot:
       level: error
       AppenderRef:
-        ref: LogToConsole
+        - ref: async-console

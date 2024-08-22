@@ -1,0 +1,17 @@
+spring:
+  redis:
+    password: 'q7ZtCl^5S3'
+    ssl: false
+    timeout: 3s
+    connectTimeout: 3s
+    clientName: redisson
+    cluster:
+      nodes:
+        - 192.168.96.201:11080
+        - 192.168.96.201:11081
+        - 192.168.96.202:11080
+        - 192.168.96.202:11081
+        - 192.168.96.203:11080
+        - 192.168.96.203:11081
+server:
+  port: 8000

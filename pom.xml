@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.9</version>
+        <version>2.6.11</version>
     </parent>
 
     <groupId>com.github.jingshouyan</groupId>
@@ -35,6 +35,11 @@
         <module>class-path-test</module>
         <module>log4j2</module>
         <module>redis-mysql</module>
+        <module>commons-log</module>
+        <module>spring-redis-redisson</module>
+        <module>pool</module>
+        <module>count-cpu</module>
+        <module>easy-excel</module>
     </modules>
 
     <properties>
@@ -52,6 +57,7 @@
         <j-jdbc.version>1.2.1</j-jdbc.version>
         <zipkin.version>5.5.0</zipkin.version>
         <jmh.version>1.32</jmh.version>
+        <kafka.version>3.4.0</kafka.version>
     </properties>
 
     <dependencyManagement>
@@ -163,6 +169,7 @@
                     <!--                    <skip>true</skip>-->
                 </configuration>
             </plugin>
+
         </plugins>
         <defaultGoal>compile</defaultGoal>
 
@@ -183,79 +190,6 @@
             <email>jingshouyan@gmail.com</email>
         </developer>
     </developers>
-    <scm>
-        <connection>scm:git:git@github.com:jingshouyan/j-rpc.git</connection>
-        <developerConnection>scm:git:git@github.com:jingshouyan/j-rpc.git</developerConnection>
-        <url>git@github.com:jingshouyan/j-rpc.git</url>
-    </scm>
 
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <!-- Source -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- Javadoc -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
-                        <configuration>
-                            <show>private</show>
-                            <nohelp>true</nohelp>
-                            <charset>UTF-8</charset>
-                            <encoding>UTF-8</encoding>
-                            <docencoding>UTF-8</docencoding>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- GPG -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-                <repository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-                </repository>
-            </distributionManagement>
-        </profile>
-    </profiles>
 
 </project>

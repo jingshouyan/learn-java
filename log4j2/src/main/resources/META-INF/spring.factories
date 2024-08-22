@@ -1,0 +1,1 @@
+org.springframework.context.ApplicationContextInitializer=com.github.jingshouyan.log4j2.SpringEnvironmentLookup
